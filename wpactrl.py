@@ -141,9 +141,9 @@ class WPACtrl(object):
         try:
             resp = self.sock.recv(self.BUFF_SIZE)
         except socket.timeout as e:
-            raise WPACtrlError('Timeout reading response', e)
+            raise WPASocketError('Timeout reading response', e)
         except socket.error as e:
-            raise WPACtrlError('Error reading response', e)
+            raise WPASocketError('Error reading response', e)
         return resp
 
     def request(self, cmd):
@@ -151,9 +151,9 @@ class WPACtrl(object):
         try:
             self.sock.send(cmd)
         except socket.timeout as e:
-            raise WPACtrlError('Timeout sending "{}"'.format(cmd), e)
+            raise WPASocketError('Timeout sending "{}"'.format(cmd), e)
         except socket.error as e:
-            raise WPACtrlError('Error sending "{}"'.format(cmd), e)
+            raise WPASocketError('Error sending "{}"'.format(cmd), e)
         resp = self.recv()
         # TODO: Handle unsolicited messages
         self.disconnect()
