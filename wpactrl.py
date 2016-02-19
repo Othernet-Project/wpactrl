@@ -179,14 +179,22 @@ class WPACtrl(object):
     def set_ssid(self, ssid):
         return self.request('SET ssid {}'.format(ssid.strip()) == 'OK'
 
+
+if __name__ == '__main__':
+    import sys
+
     wc = WPACtrl()
 
     # Test whether WPACtrl interface works
     if not wc.test():
         print('WPACtrl interface did not respond to PING')
         sys.exit(0)
+
+    resp = wc.status()
     print('State: {}'.format(resp.state))
     print('Interface: {}'.format(resp.bss_0))
     print('SSID: {}'.format(resp.ssid_0))
     print('Channel: {}'.format(resp.channel))
 
+    resp = wc.get_config()
+    print(resp)
