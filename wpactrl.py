@@ -161,9 +161,12 @@ class WPACtrl(object):
             raise WPADataError("Command '{}' is not supported".format(cmd), 'command error')
         return resp.strip()
 
-    def status(self):
-        resp = self.request('STATUS')
-        return KeyValResp(resp)
+    def test(self):
+        try:
+            resp = self.request('PING')
+        except WPACtrlError:
+            return False
+        return resp == 'PONG'
 
 
 if __name__ == '__main__':
