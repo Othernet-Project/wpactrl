@@ -27,15 +27,29 @@ except ImportError:
 
 class WPACtrlError(Exception):
     """
-    Exception raised when WPACtrl object encounters issues with sockets.
+    Generic or unknown control interface error.
     """
     def __init__(self, msg, error):
         self.msg = msg
         self.error = error
         super(WPACtrlError, self).__init__(msg)
 
+
+class WPASocketError(WPACtrlError):
+    """
+    Exception raised when WPACtrl object encounters issues with sockets.
+    """
     def __str__(self):
         return 'WPA socket error: {} ({})'.format(self.msg, self.error)
+
+
+class WPADataError(WPACtrlError):
+    """
+    Exception raised when WPACtrl object encounters issues with responses.
+    """
+    def __str__(self):
+        return 'WPA data error: {} ({})'.format(self.msg, self.error)
+
 
 
 class KeyValResp(object):
