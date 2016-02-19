@@ -168,6 +168,10 @@ class WPACtrl(object):
             return False
         return resp == 'PONG'
 
+    def status(self):
+        resp = self.request('STATUS')
+        return KeyValResp(resp)
+
 
 if __name__ == '__main__':
     import sys
