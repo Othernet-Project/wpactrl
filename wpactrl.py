@@ -77,6 +77,12 @@ class KeyValResp(object):
         for k, v in (self.parse_line(l) for l in lines):
             self._data[k] = v
 
+    def __str__(self):
+        s = []
+        for k, v in self._data.items():
+            s.append('{}={}'.format(k, v))
+        return '\n'.join(s)
+
     @staticmethod
     def parse_line(line):
         k, v = line.split('=', 1)
