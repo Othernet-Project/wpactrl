@@ -131,6 +131,8 @@ class WPACtrl(object):
             return
         self.sock.close()
         self.sock = None
+        os.unlink(self.local_socket_path)
+        self.local_sock = None
         self.SOCKETS_COUNT -= 1
 
     def recv(self):
