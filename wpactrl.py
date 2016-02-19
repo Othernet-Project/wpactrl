@@ -173,10 +173,10 @@ if __name__ == '__main__':
     import sys
 
     wc = WPACtrl()
-    try:
-        resp = wc.status()
-    except WPACtrlError as e:
-        print(e)
+
+    # Test whether WPACtrl interface works
+    if not wc.test():
+        print('WPACtrl interface did not respond to PING')
         sys.exit(0)
     print('State: {}'.format(resp.state))
     print('Interface: {}'.format(resp.bss_0))
