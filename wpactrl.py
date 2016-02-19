@@ -157,7 +157,9 @@ class WPACtrl(object):
         resp = self.recv()
         # TODO: Handle unsolicited messages
         self.disconnect()
-        return resp
+        if resp.strip() == 'UNKNOWN COMMAND':
+            raise WPADataError("Command '{}' is not supported".format(cmd), 'command error')
+        return resp.strip()
 
     def status(self):
         resp = self.request('STATUS')
