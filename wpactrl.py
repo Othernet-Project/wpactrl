@@ -176,6 +176,9 @@ class WPACtrl(object):
         resp = self.request('GET_CONFIG')
         return KeyValResp(resp)
 
+    def set_ssid(self, ssid):
+        return self.request('SET ssid {}'.format(ssid.strip()) == 'OK'
+
     wc = WPACtrl()
 
     # Test whether WPACtrl interface works
