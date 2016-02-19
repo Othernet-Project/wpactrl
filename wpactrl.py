@@ -95,7 +95,6 @@ class KeyValResp(object):
         return k, v.strip()
 
 
-
 class WPACtrl(object):
     """
     Class that encapsulates the WPA control interface.
