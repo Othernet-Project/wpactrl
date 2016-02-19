@@ -85,7 +85,10 @@ class KeyValResp(object):
 
     @staticmethod
     def parse_line(line):
-        k, v = line.split('=', 1)
+        try:
+            k, v = line.split('=', 1)
+        except ValueError as e:
+            raise WPADataError("Cannot parse line '{}'".format(line), e)
         k = k.strip()
         if '[' in k:
             k = k.replace('[', '_').replace(']', '')
