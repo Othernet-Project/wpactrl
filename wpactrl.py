@@ -172,9 +172,9 @@ class WPACtrl(object):
         resp = self.request('STATUS')
         return KeyValResp(resp)
 
-
-if __name__ == '__main__':
-    import sys
+    def get_config(self):
+        resp = self.request('GET_CONFIG')
+        return KeyValResp(resp)
 
     wc = WPACtrl()
 
